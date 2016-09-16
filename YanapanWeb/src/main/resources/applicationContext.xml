@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+ 
+http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+ 
+http://www.springframework.org/schema/tx
+ 
+http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+ 
+http://www.springframework.org/schema/context
+ 
+http://www.springframework.org/schema/context/spring-context-4.0.xsd
+
+http://www.springframework.org/schema/aop
+
+http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+
+
+
+
+
+	<!-- Scans the classpath of this application for @Components to deploy as 
+		beans -->
+<!-- 	<context:component-scan base-package="pe.com.tutoriales.musicshop" /> -->
+
+	<!-- Configures the @Controller programming model -->
+	<!-- <mvc:annotation-driven /> -->
+	<!-- <aop:aspectj-autoproxy/> <bean id="viewResolver1" class="org.springframework.web.servlet.view.XmlViewResolver"> 
+		<property name="order" value="1"/> <property name="location" value="/WEB-INF/views.xml"/> 
+		</bean> -->
+
+
+
+<!-- 	<bean id="dataSource" -->
+<!-- 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
+<!-- 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property> -->
+<!-- 		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"> -->
+<!-- 		</property> -->
+<!-- 		<property name="username" value="MUSIC_SHOP"></property> -->
+<!-- 		<property name="password" value="123456"></property> -->
+<!-- 	</bean> -->
+
+		<tx:annotation-driven transaction-manager="txManager" /> 
+
+<!-- 	<bean id="txManager" -->
+<!-- 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> -->
+<!-- 		<property name="dataSource" ref="dataSource" /> -->
+<!-- 	</bean> -->
+
+<!-- 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate"> -->
+<!-- 		<property name="dataSource" ref="dataSource" /> -->
+<!-- 	</bean> -->
+<!-- 	<bean id="namedParameterJdbcTemplate" -->
+<!-- 		class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate"> -->
+<!-- 		<constructor-arg ref="dataSource" /> -->
+<!-- 	</bean> -->
+
+
+
+</beans>
