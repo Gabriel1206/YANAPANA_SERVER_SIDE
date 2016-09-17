@@ -30,7 +30,7 @@ http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
 
 	<!-- Scans the classpath of this application for @Components to deploy as 
 		beans -->
-	<context:component-scan base-package="pe.com.upc.vacaciones" />
+	<context:component-scan base-package="pe.com.yanapan" />
 	<mvc:annotation-driven />
 	<context:annotation-config />
 	<!-- Configures the @Controller programming model -->
