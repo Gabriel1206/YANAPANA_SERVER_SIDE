@@ -1,0 +1,50 @@
+.tabla {
+	padding: 3px;
+ 	border-width: 1px;
+ 	border-color: #3496C4;
+ 	border-style: solid;
+ 	border-radius: 8px;
+}
+.imagen-back {   
+ 	background-image: url(recursos/images/background1.jpg);
+   	-webkit-background-size: cover;
+ 	-moz-background-size: cover;
+ 	-o-background-size: cover;
+ 	background-size: cover;
+}
+.letra {
+	padding:13px 24px;
+	color:#fff;
+	font-size:18px;
+	line-height:23px;
+	font-family:"PT Sans Narrow","Arial Narrow",Arial,Helvetica,sans-serif;
+	font-weight:bold;
+	text-decoration:none;
+	text-shadow:0 1px 0 rgba(0,0,0,0.3);
+}
+
+.letraPie {
+	padding:13px 24px;
+	color:#000000;
+	font-size:18px;
+	line-height:23px;
+	font-family:"PT Sans Narrow","Arial Narrow",Arial,Helvetica,sans-serif;
+	font-weight:bold;
+	text-decoration:none;
+	text-shadow:0 1px 0 rgba(0,0,0,0.3);
+}
+.leyenda {
+  	padding: 0.2em 0.5em;
+  	border-bottom:1px solid #3496C4;
+  	font-size:90%;
+  	font-family:"PT Sans Narrow","Arial Narrow",Arial,Helvetica,sans-serif;
+  	font-size:18px;
+  	font-weight:bold;
+	text-decoration:none;
+	text-shadow:0 1px 0 rgba(0,0,0,0.3);
+}
+/*Cambiar el header del datepicker*/
+.ui-datepicker-header {  
+    color: #000000;  
+    font-weight: bold;  
+}

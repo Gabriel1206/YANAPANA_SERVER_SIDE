@@ -1,0 +1,22 @@
+@CHARSET "ISO-8859-1";
+@page{margin: 0;}
+#cabecera {visibility:hidden}
+#logo {visibility:hidden; height:0px;}
+#linea {visibility:hidden}
+#nroFactura {visibility:hidden; height:0px;}
+#botonImprime {visibility:hidden; height:0px;}
+			 
+#rodape {visibility:hidden}
+#noMostrar {visibility:hidden}
+#tablaFacturacionDetalle {border: 1;}
+#tablaFacturacionDetalle1 {border: 1;}
+#tablaFacturacionDetalle2 {border: 1;}
+#tablaDatos {border: 1;}
+#tablaFacturacionDetalle tr {border-top: 1; border-bottom: 1; border-left: 1; border-right: 1;}
+#tablaFacturacionDetalle1 tr {border-top: 1; border-bottom: 1; border-left: 1; border-right: 1;}
+#tablaFacturacionDetalle2 tr {border-top: 1; border-bottom: 1; border-left: 1; border-right: 1;}
+#tablaDatos tr {border-top: 1; border-bottom: 1; border-left: 1; border-right: 1;}
+#tablaFacturacionDetalle tr td {border: 1; border-top: 1; border-bottom: 1; border-left: 1; border-right: 1;}
+#tablaFacturacionDetalle1 tr td {border: 1; border-top: 1; border-bottom: 1; border-left: 1; border-right: 1;}
+#tablaFacturacionDetalle2 tr td {border: 1; border-top: 1; border-bottom: 1; border-left: 1; border-right: 1;}
+#tablaDatos tr td {border: 1; border-top: 1; border-bottom: 1; border-left: 1; border-right: 1;}
