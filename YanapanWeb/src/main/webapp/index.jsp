@@ -33,7 +33,6 @@ xmlns:jsp="http://java.sun.com/JSP/Page">
 	</script>
 </head>
 <body>
-	
 	<table border="0" align="center" class="centrar">
 		<tr>
 			<td>
@@ -57,7 +56,7 @@ xmlns:jsp="http://java.sun.com/JSP/Page">
 									</td>
 									<td width="30px">&nbsp;</td>
 								</tr>
-								<tr>
+								<tr> 
 									<td width="30px">&nbsp;</td>
 									<td>
 										<div class="input-group">
