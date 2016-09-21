@@ -21,7 +21,7 @@ public class ImeiController {
 	@Autowired
 	private ImeiService service;
 	
-	@RequestMapping(value = "imei", method = RequestMethod.GET, consumes = MediaType.ALL_VALUE, produces = "application/json")
+	@RequestMapping(value = "v1/imei", method = RequestMethod.GET, consumes = MediaType.ALL_VALUE, produces = "application/json")
 	public @ResponseBody String findImei(
 			String descImei) throws BusinessException {
 		GenericResponseBean<Imei> responseBean = new GenericResponseBean<Imei>();
