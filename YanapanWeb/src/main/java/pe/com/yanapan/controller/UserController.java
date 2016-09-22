@@ -20,7 +20,7 @@ public class UserController {
 	@Autowired
 	private UserService service;
 	
-	@RequestMapping(value = "users/validate", method = RequestMethod.GET, consumes = MediaType.ALL_VALUE)
+	@RequestMapping(value = "v1/users", method = RequestMethod.GET, consumes = MediaType.ALL_VALUE)
 	public @ResponseBody GenericResponseBean<User> validateAcces(
 			String user, String password) throws BusinessException {
 		GenericResponseBean<User> responseBean = new GenericResponseBean<User>();
