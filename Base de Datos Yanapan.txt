@@ -1,0 +1,167 @@
+SCRIPT DEL ESQUEMA DE LA BD
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+-- -----------------------------------------------------
+-- Schema Yanapan
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema Yanapan
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `Yanapan` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
+USE `Yanapan` ;
+
+-- -----------------------------------------------------
+-- Table `Yanapan`.`Profile`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Yanapan`.`Profile` (
+  `idProfile` INT NOT NULL,
+  `descProfile` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idProfile`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `Yanapan`.`User`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Yanapan`.`User` (
+  `idUser` INT NOT NULL,
+  `nickUser` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(45) NOT NULL,
+  `firstName` VARCHAR(100) NULL,
+  `lastName` VARCHAR(100) NULL,
+  `birthdate` DATETIME NULL,
+  `Profile_idProfile` INT NOT NULL,
+  PRIMARY KEY (`idUser`, `Profile_idProfile`),
+  INDEX `fk_User_Profile_idx` (`Profile_idProfile` ASC),
+  CONSTRAINT `fk_User_Profile`
+    FOREIGN KEY (`Profile_idProfile`)
+    REFERENCES `Yanapan`.`Profile` (`idProfile`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `Yanapan`.`Imei`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Yanapan`.`Imei` (
+  `idImei` INT NOT NULL,
+  `descImei` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idImei`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `Yanapan`.`WorkingDate`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Yanapan`.`WorkingDate` (
+  `idWorkingDate` INT NOT NULL,
+  `startDay` DATETIME NOT NULL,
+  `endDay` DATETIME NOT NULL,
+  `User_idUser` INT NOT NULL,
+  `User_Profile_idProfile` INT NOT NULL,
+  PRIMARY KEY (`idWorkingDate`, `User_idUser`, `User_Profile_idProfile`),
+  INDEX `fk_WorkingDate_User1_idx` (`User_idUser` ASC, `User_Profile_idProfile` ASC),
+  CONSTRAINT `fk_WorkingDate_User1`
+    FOREIGN KEY (`User_idUser` , `User_Profile_idProfile`)
+    REFERENCES `Yanapan`.`User` (`idUser` , `Profile_idProfile`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `Yanapan`.`Visit`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Yanapan`.`Visit` (
+  `idVisit` INT NOT NULL,
+  `longitude` VARCHAR(30) NULL,
+  `latitude` VARCHAR(30) NULL,
+  PRIMARY KEY (`idVisit`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `Yanapan`.`Ubigeo`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Yanapan`.`Ubigeo` (
+  `idUbigeo` INT NOT NULL,
+  `descUbigeo` VARCHAR(100) NULL,
+  PRIMARY KEY (`idUbigeo`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `Yanapan`.`TypeBeneficiary`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Yanapan`.`TypeBeneficiary` (
+  `idTypeBeneficiary` INT NOT NULL,
+  `descTypeBeneficiary` VARCHAR(100) NULL,
+  PRIMARY KEY (`idTypeBeneficiary`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `Yanapan`.`Beneficiary`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Yanapan`.`Beneficiary` (
+  `idBeneficiary` INT NOT NULL,
+  `firstName` VARCHAR(45) NULL,
+  `lastName` VARCHAR(45) NULL,
+  `birthDate` DATETIME NULL,
+  `address` VARCHAR(100) NULL,
+  `flagDisabled` CHAR(1) NULL,
+  `flagKnowledge` CHAR(1) NULL,
+  `descKnowledge` VARCHAR(300) NULL,
+  `Ubigeo_idUbigeo` INT NOT NULL,
+  `TypeBeneficiary_idTypeBeneficiary` INT NOT NULL,
+  PRIMARY KEY (`idBeneficiary`, `Ubigeo_idUbigeo`, `TypeBeneficiary_idTypeBeneficiary`),
+  INDEX `fk_Beneficiary_Ubigeo1_idx` (`Ubigeo_idUbigeo` ASC),
+  INDEX `fk_Beneficiary_TypeBeneficiary1_idx` (`TypeBeneficiary_idTypeBeneficiary` ASC),
+  CONSTRAINT `fk_Beneficiary_Ubigeo1`
+    FOREIGN KEY (`Ubigeo_idUbigeo`)
+    REFERENCES `Yanapan`.`Ubigeo` (`idUbigeo`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Beneficiary_TypeBeneficiary1`
+    FOREIGN KEY (`TypeBeneficiary_idTypeBeneficiary`)
+    REFERENCES `Yanapan`.`TypeBeneficiary` (`idTypeBeneficiary`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `Yanapan`.`DetailVisitBeneficiary`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Yanapan`.`DetailVisitBeneficiary` (
+  `Visit_idVisit` INT NOT NULL,
+  `Beneficiary_idBeneficiary` INT NOT NULL,
+  `Beneficiary_Ubigeo_idUbigeo` INT NOT NULL,
+  `note` VARCHAR(300) NULL,
+  `urlPhoto1` VARCHAR(100) NULL,
+  `urlPhoto2` VARCHAR(100) NULL,
+  PRIMARY KEY (`Visit_idVisit`, `Beneficiary_idBeneficiary`, `Beneficiary_Ubigeo_idUbigeo`),
+  INDEX `fk_Visit_has_Beneficiary_Beneficiary1_idx` (`Beneficiary_idBeneficiary` ASC, `Beneficiary_Ubigeo_idUbigeo` ASC),
+  INDEX `fk_Visit_has_Beneficiary_Visit1_idx` (`Visit_idVisit` ASC),
+  CONSTRAINT `fk_Visit_has_Beneficiary_Visit1`
+    FOREIGN KEY (`Visit_idVisit`)
+    REFERENCES `Yanapan`.`Visit` (`idVisit`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Visit_has_Beneficiary_Beneficiary1`
+    FOREIGN KEY (`Beneficiary_idBeneficiary` , `Beneficiary_Ubigeo_idUbigeo`)
+    REFERENCES `Yanapan`.`Beneficiary` (`idBeneficiary` , `Ubigeo_idUbigeo`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
