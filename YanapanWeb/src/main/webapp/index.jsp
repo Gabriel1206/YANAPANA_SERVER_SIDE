@@ -39,7 +39,7 @@ xmlns:jsp="http://java.sun.com/JSP/Page">
 				<div class="panel panel-primary">
 					<div class="panel-heading">Autenticación de Usuario</div>
 					<div class="panel-body">
-						<form style="margin-top: 1.0em;" action="<c:url value="/j_spring_security_check"/>" method="post">
+						<form style="margin-top: 1.0em;" action="" method="post">
 							<table border="0" cellpadding="5">
 								<tr>
 									<td rowspan="4">
