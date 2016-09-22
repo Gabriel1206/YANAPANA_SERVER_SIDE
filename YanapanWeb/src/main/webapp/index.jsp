@@ -31,6 +31,9 @@ xmlns:jsp="http://java.sun.com/JSP/Page">
 		
 	});
 	</script>
+	
+	<script src="<%= request.getContextPath() %>/recursos/js/login-user.js"></script>
+	
 </head>
 <body>
 	<table border="0" align="center" class="centrar">
@@ -39,7 +42,7 @@ xmlns:jsp="http://java.sun.com/JSP/Page">
 				<div class="panel panel-primary">
 					<div class="panel-heading">Autenticación de Usuario</div>
 					<div class="panel-body">
-						<form style="margin-top: 1.0em;" action="" method="post">
+						<form style="margin-top: 1.0em;" action="user-validate.json" method="post">
 							<table border="0" cellpadding="5">
 								<tr>
 									<td rowspan="4">
@@ -51,7 +54,8 @@ xmlns:jsp="http://java.sun.com/JSP/Page">
 									<td>
 										<div class="input-group">
 									      <div class="input-group-addon"><img src="recursos/images/icons/correo_16x16.png" border="0" /></div>
-									      <input class="form-control" type="text" name="j_username" placeholder="Ingrese su usuario">
+									      <!--  input class="form-control" type="text" name="j_username" placeholder="Ingrese su usuario" -->
+									      <input class="form-control" type="text" id="nickUser" name="nickUser" placeholder="Ingrese su usuario">
 									    </div>
 									</td>
 									<td width="30px">&nbsp;</td>
@@ -61,7 +65,8 @@ xmlns:jsp="http://java.sun.com/JSP/Page">
 									<td>
 										<div class="input-group">
 									      <div class="input-group-addon"><img src="recursos/images/icons/security_16x16.png" border="0" /></div>
-									      <input class="form-control" type="password" name="j_password" placeholder="Ingrese su clave">
+									      <!--  input class="form-control" type="password" name="j_password" placeholder="Ingrese su clave" -->
+									      <input class="form-control" type="password" id="password" name="password" placeholder="Ingrese su clave">
 									    </div>
 									</td>
 									<td width="30px">&nbsp;</td>
@@ -69,7 +74,8 @@ xmlns:jsp="http://java.sun.com/JSP/Page">
 								<tr>
 									<td>&nbsp;</td>
 									<td align="right">
-										<input type="submit" name="aceptar" value="Aceptar" class="btn btn-primary" />
+										<!--  input type="submit" name="aceptar" value="Aceptar" class="btn btn-primary" onclick="validateUser()"/-->
+										<input type="submit" name="aceptar" value="Aceptar" class="btn btn-primary" onclick="userValidate()"/>
 									</td>
 									<td width="30px">&nbsp;</td>
 								</tr>
@@ -81,5 +87,7 @@ xmlns:jsp="http://java.sun.com/JSP/Page">
 		</tr>
 	</table>
 	
+	
+
 </body>
 </html>

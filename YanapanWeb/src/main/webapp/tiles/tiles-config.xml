@@ -1,0 +1,30 @@
+<!DOCTYPE tiles-definitions PUBLIC 
+"-//Apache Software Foundation//DTD Tiles Configuraction 2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="main" template="/templates/main.jsp">
+		<put-attribute name="titulo" value="BIENVENIDOS AL SISTEMA DE PADRON DE USUARIOS DEL MINISTERIO DE DESARROLLO E INCLUSION SOCIAL" />
+		<put-attribute name="cabecera" value="/templates/cabecera.jsp" />
+		<put-attribute name="pie" value="/templates/pie.jsp" />
+	</definition>
+	
+	<definition name="main_login" template="/templates/main_login.jsp">
+		<put-attribute name="titulo" value="YANAPAN WEB"/>
+		<put-attribute name="pie" value="/templates/pie.jsp" />
+	</definition>
+
+	<definition name="error" extends="main_login">
+		<put-attribute name="contenido" value="/error.jsp" />
+	</definition>
+	
+	<definition name="login" extends="main_login">
+		<put-attribute name="contenido" value="/index.jsp" />
+	</definition>
+	
+	<definition name="inicio" extends="main">
+		<put-attribute name="contenido" value="/blank.jsp" />
+	</definition>
+
+</tiles-definitions>

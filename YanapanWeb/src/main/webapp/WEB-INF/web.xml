@@ -11,6 +11,14 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	
+	<listener>
+		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
+	
+	<listener>
+		<listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
+	</listener>
 
 	<servlet>
 		<servlet-name>dispatcher</servlet-name>
@@ -50,6 +58,7 @@
 	<servlet-mapping>
 		<servlet-name>dispatcher</servlet-name>
 		<url-pattern>*.htm</url-pattern>
+		<url-pattern>*.json</url-pattern>
 		<url-pattern>/rest/*</url-pattern>
 	</servlet-mapping>
 

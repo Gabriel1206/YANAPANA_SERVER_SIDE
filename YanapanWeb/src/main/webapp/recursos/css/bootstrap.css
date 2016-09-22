@@ -5747,15 +5747,14 @@ button.list-group-item-danger.active:focus {
   border-bottom-color: #ddd;
 }
 .panel-primary {
-	border-color: #E3000F;
-  /*border-color: #337ab7;*/
+	/*border-color: #E3000F;*/
+  border-color: #337ab7;
 }
 .panel-primary > .panel-heading {
   color: #fff;
-  background-color: #E3000F; 
-/* #337ab7;*/
-  border-color: #E3000F;
-/*  337ab7;*/
+  /*background-color: #E3000F;*/
+  background-color: #337ab7; 
+  border-color: #337ab7;
   
 }
 .panel-primary > .panel-heading + .panel-collapse > .panel-body {
