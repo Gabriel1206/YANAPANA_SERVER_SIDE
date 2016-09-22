@@ -37,6 +37,11 @@ public class UserController {
 		return "inicio";
 	}
 
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String login(HttpServletRequest request) {
+		return "logout";
+	}
+	
 	@RequestMapping(value = "/user-validate.json", method = RequestMethod.POST, produces="application/json")
 	public String userValidate(
 			@RequestParam(value = "nickUser", defaultValue = "") String nickUser,
@@ -45,7 +50,7 @@ public class UserController {
 			GenericResponseBean<User> responseBean = new GenericResponseBean<User>();
 			responseBean.setObjeto(service.findByUserAndPassword(nickUser, password));
 			
-			if (nickUser.equals("jmunoz") ){
+			if (nickUser.equals("jmunoz") && (password.equals("jmunoz")) ){
 				return "inicio";
 			} else {
 				return "login";

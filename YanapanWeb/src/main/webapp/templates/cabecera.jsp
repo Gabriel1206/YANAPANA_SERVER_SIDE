@@ -168,10 +168,10 @@ a:hover, a:visited, a:link, a:active
 			 
 			<ul id="main-menu" class="sm sm-blue">
 				<li>
-					<a href="<%=request.getContextPath()%>/<c:url value='inicio'/>">Inicio</a>
+					<a href="<%=request.getContextPath()%>/inicio.json">Inicio</a>
 				</li>
 				<li id="logout" style="float:right;">
-					<a href="${logoutUrl}">Salir</a>  
+					<a href="<%=request.getContextPath()%>/logout.json">Salir</a>  
 				</li>
 				
 			</ul>

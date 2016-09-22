@@ -22,7 +22,11 @@
 	<definition name="login" extends="main_login">
 		<put-attribute name="contenido" value="/index.jsp" />
 	</definition>
-	
+
+	<definition name="logout" extends="main_login">
+		<put-attribute name="contenido" value="/index.jsp" />
+	</definition>
+		
 	<definition name="inicio" extends="main">
 		<put-attribute name="contenido" value="/blank.jsp" />
 	</definition>
