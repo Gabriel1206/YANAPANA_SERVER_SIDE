@@ -7,6 +7,10 @@
 <title>blank</title>
 </head>
 <body>
-
+<table>
+	<tr>
+		<td>Página en blanco</td>
+	</tr>
+</table>
 </body>
 </html>

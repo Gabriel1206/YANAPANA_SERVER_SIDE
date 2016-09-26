@@ -28,7 +28,7 @@
 	</definition>
 		
 	<definition name="inicio" extends="main">
-		<put-attribute name="contenido" value="/blank.jsp" />
+		<put-attribute name="contenido" value="/beneficiary.jsp" />
 	</definition>
 
 </tiles-definitions>

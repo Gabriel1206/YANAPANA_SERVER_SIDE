@@ -50,7 +50,7 @@ public class UserController {
 			GenericResponseBean<User> responseBean = new GenericResponseBean<User>();
 			responseBean.setObjeto(service.findByUserAndPassword(nickUser, password));
 			
-			if (nickUser.equals("jmunoz") && (password.equals("jmunoz")) ){
+			if (nickUser.equals(responseBean.getObjeto().getNickUser()) && (password.equals(responseBean.getObjeto().getPassword())) ){
 				return "inicio";
 			} else {
 				return "login";
