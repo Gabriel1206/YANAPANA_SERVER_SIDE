@@ -1,5 +1,7 @@
 package pe.com.yanapan.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,17 +13,24 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import pe.com.yanapan.beans.GenericResponseBean;
+import pe.com.yanapan.beans.ResponseListBean;
 import pe.com.yanapan.exceptions.BusinessException;
+import pe.com.yanapan.model.Beneficiary;
 import pe.com.yanapan.model.Imei;
 import pe.com.yanapan.model.User;
 import pe.com.yanapan.service.UserService;
+import pe.com.yanapan.service.UsersService;
 import pe.com.yanapan.utils.GlobalMessages;
+import pe.com.yanapan.utils.OperadoresUtil;
 
 @Controller
 public class UserController {
 
 	@Autowired
 	private UserService service;
+	
+	@Autowired
+	private UsersService usersService;
 	
 	@RequestMapping(value = "v1/users", method = RequestMethod.GET, consumes = MediaType.ALL_VALUE)
 	public @ResponseBody GenericResponseBean<User> validateAcces(
@@ -42,6 +51,11 @@ public class UserController {
 		return "logout";
 	}
 	
+	@RequestMapping(value = "/users", method = RequestMethod.GET)
+	public String users(HttpServletRequest request) {
+		return "users";
+	}
+	
 	@RequestMapping(value = "/user-validate.json", method = RequestMethod.POST, produces="application/json")
 	public String userValidate(
 			@RequestParam(value = "nickUser", defaultValue = "") String nickUser,
@@ -55,6 +69,27 @@ public class UserController {
 			} else {
 				return "login";
 			}
+			
+	}
+	
+	@RequestMapping(value = "/users-all.json", method = RequestMethod.POST, produces="application/json")
+	public @ResponseBody ResponseListBean<User> reportUsers(
+			@RequestParam(value = "page", defaultValue = "1") Integer pagina, 
+			@RequestParam(value = "row", defaultValue = "20") Integer registros,
+			@RequestParam(value = "idUser", defaultValue = "0") Integer idUser) {
+			
+			ResponseListBean<User> responseBean = new ResponseListBean<User>();
+			
+			List<User> reportUsers = usersService.listAllUser();
+			
+			Integer totalUser = reportUsers.size();
+			responseBean.setPage(pagina);
+			responseBean.setRecords(totalUser);
+			
+			responseBean.setTotal(OperadoresUtil.obtenerCociente(totalUser, registros));
+			responseBean.setRows(reportUsers);
+			
+			return responseBean;
 			
 	}
 }

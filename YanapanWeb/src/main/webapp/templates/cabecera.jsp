@@ -59,95 +59,7 @@ a:hover, a:visited, a:link, a:active
 <script type="text/javascript">
 	$(function() {
 		
-		usuario = '${sessionScope.datosSession.usuario}';
-		nombreFull = '${sessionScope.datosSession.nombresFull}';
-		jsonMenu = '${sessionScope.datosSession.listaMenu}';
-		//console.log(jsonMenu);
-		jsonMenu = JSON.parse(jsonMenu);
-		
-		var menuOpciones = "";
-		$.each(jsonMenu,function(keyM, menu) {
-		    //console.log("Titulo Menu [" + keyM + "] : " + menu.tituloMenu);
-		    menuOpciones += "<li><a>" + menu.tituloMenu + "</a><ul>";
-		    $.each(menu.niveles,function(keyN, niveles) {
-		    	//console.log("Titulo SubMenu [" + keyN + "] : " + niveles.tituloSubMenu);
-		    	menuOpciones += "<li>";
-		    	menuOpciones += "<a href='" + "<%=request.getContextPath()%>/<c:url value='" + niveles.link + "'/>" + "'>" + niveles.tituloSubMenu + "</a>";
-		    	menuOpciones += "</li>";
-		    	
-		    });
-		    menuOpciones += "</ul></li>";
-		});
-		
-		//console.log(menuOpciones);
-				
-		$("#logout").before(menuOpciones);
-		
-		$('#main-menu').smartmenus({
-			subMenusSubOffsetX: 1,
-			subMenusSubOffsetY: -8
-		});
-		
-		nombreUt = '${sessionScope.datosSession.nombreUt}';
-		nombreRol = '${sessionScope.datosSession.nombreRol}';
-		nombreInstitucion = '${sessionScope.datosSession.nombreInstitucion}';
-		
-		datos = "<table border=0>";
-		datos += "<tr>";
-		datos += "<td><b>Unidad Territorial :</b></td>";
-		datos += "</tr>";
-		datos += "<tr>";
-		datos += "<td>" + nombreUt + "</td>";
-		datos += "</tr>";
-		
-		datos += "<tr>";
-		datos += "<td valign=middle><hr></td>";
-		datos += "</tr>";
-		
-		datos += "<tr>";
-		datos += "<td><b>Usuario :</b></td>";
-		datos += "</tr>";
-		datos += "<tr>";
-		datos += "<td>" + usuario + "</td>";
-		datos += "</tr>";
-		
-		datos += "<tr>";
-		datos += "<td valign=middle><hr></td>";
-		datos += "</tr>";
-		
-		datos += "<tr>";
-		datos += "<td><b>Nombres :</b></td>";
-		datos += "</tr>";
-		datos += "<tr>";
-		datos += "<td>" + nombreFull + "</td>";
-		datos += "</tr>";
-		
-		datos += "<tr>";
-		datos += "<td valign=middle><hr></td>";
-		datos += "</tr>";
-		
-		datos += "<tr>";
-		datos += "<td><b>Rol :</b></td>";
-		datos += "</tr>";
-		datos += "<tr>";
-		datos += "<td>" + nombreRol + "</td>";
-		datos += "</tr>";		
-		
-		datos += "</table>";
-		
-		$("#datos").html(nombreFull + " ( " + usuario + " )");
-		
-		/*
-		$('#usuario-img').popover({ 
-			html : true,
-			title : "Perfil",
-			content: datos,
-			container: 'body',
-			placement : "bottom", 
-			trigger: "hover"
-		})
-		*/
-		
+	
 });
 </script>
 </head>
@@ -168,10 +80,19 @@ a:hover, a:visited, a:link, a:active
 			 
 			<ul id="main-menu" class="sm sm-blue">
 				<li>
-					<a href="<%=request.getContextPath()%>/inicio.json">Inicio</a>
+					<a href="<%=request.getContextPath()%>/inicio.json">Start</a>
+				</li>
+				<li>
+					<a href="<%=request.getContextPath()%>/inicio.json">Visit List</a>
+				</li>
+				<li>
+					<a href="<%=request.getContextPath()%>/users.json">Users List</a>
+				</li>
+				<li>
+					<a href="<%=request.getContextPath()%>/check.json">CheckIn & CheckOut List</a>
 				</li>
 				<li id="logout" style="float:right;">
-					<a href="<%=request.getContextPath()%>/logout.json">Salir</a>  
+					<a href="<%=request.getContextPath()%>/logout.json">Exit</a>  
 				</li>
 				
 			</ul>

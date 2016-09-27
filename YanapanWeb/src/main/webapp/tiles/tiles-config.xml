@@ -31,4 +31,9 @@
 		<put-attribute name="contenido" value="/beneficiary.jsp" />
 	</definition>
 
+	<definition name="users" extends="main">
+		<put-attribute name="contenido" value="/user.jsp" />
+	</definition>
+	
+	
 </tiles-definitions>

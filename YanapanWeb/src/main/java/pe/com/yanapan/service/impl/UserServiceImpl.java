@@ -12,7 +12,7 @@ import pe.com.yanapan.service.UserService;
 @Service
 @Transactional(rollbackFor=Exception.class)
 public class UserServiceImpl implements UserService {
-
+	
 	@Override
 	public User findByUserAndPassword(String user, String password)	throws BusinessException {
 		

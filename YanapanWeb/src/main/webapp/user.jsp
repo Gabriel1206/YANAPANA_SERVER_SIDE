@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Beneficiary List</title>
+<title>User List</title>
 <style>
     .gBubble
     {
@@ -27,32 +27,29 @@
 </style>
 <script>
 	$(document).ready(function(){	
-		
 		$('[data-toggle="popover"]').popover({ placement : 'right', trigger: "hover" });
-		beneficiaryLoad();
+		userLoad();
 		
 	});
 	
-	function beneficiaryLoad(){
+	function userLoad(){
 		
 		var ruta = obtenerContexto();
 		
 		var formatterBotones = function(cellVal,options,rowObject)
 		{	
-			//firstName = replaceAll(rowObject.firstName, " ", "#");
-			//lastName = replaceAll(rowObject.lastName, " ", "#");
 			var opciones = "<center>";
 				
-				opciones += "<a href=javascript:beneficiaryEdit('";
-				opciones += rowObject.idBeneficiary + "') >";
-				opciones += "<img src='/"+ruta+"/recursos/images/icons/edit_24x24.png' border='0' title='Beneficiary EDIT'/>";
+				opciones += "<a href=javascript:userEdit('";
+				opciones += rowObject.idUser + "') >";
+				opciones += "<img src='/"+ruta+"/recursos/images/icons/edit_24x24.png' border='0' title='User EDIT'/>";
 				opciones += "</a>";
 				
 				opciones += "&nbsp;&nbsp;";
 				
-				opciones += "<a href=javascript:beneficiaryDelete('";
-				opciones += rowObject.idBeneficiary + "') >";
-				opciones += "<img src='/"+ruta+"/recursos/images/icons/eliminar_24x24.png' border='0' title='Beneficiary DELETE'/>";
+				opciones += "<a href=javascript:userDelete('";
+				opciones += rowObject.idUser + "') >";
+				opciones += "<img src='/"+ruta+"/recursos/images/icons/eliminar_24x24.png' border='0' title='User DELETE'/>";
 				opciones += "</a>";
 				
 				opciones += "</center>";
@@ -63,18 +60,24 @@
 		
 		jQuery("#grilla").jqGrid(
 		{
-			url : 'beneficiary-all.json',
+			url : 'users-all.json',
 			datatype : "json",
 			mtype: 'POST',
 			height: 'auto',
 			width: 'auto',
-			colNames : ['ID', 'First Name', 'Last Name', 'Birthdate', 'Address', 'Options'],
+			colNames : ['ID', 'Nick User', 'First Name', 'Last Name', 'Birthdate', 'Options'],
 			colModel : [{
-				name : 'idBeneficiary',
-				index: 'idBeneficiary',
+				name : 'idUser',
+				index: 'idUser',
 				sortable:false,
 				width: 50,
 				align: 'center'
+			},{
+				name : 'nickUser',
+				index: 'nickUser',
+				sortable:false,
+				width: 50,
+				align: 'left'
 			},{
 				name : 'firstName',
 				index: 'firstName',
@@ -88,22 +91,16 @@
 				width: 100,
 				align: 'left'
 			},{
-				name : 'birthDate',
-				index: 'birthDate',
+				name : 'birthdate',
+				index: 'birthdate',
 				sortable:false,
 				width: 100,
 				align: 'center',
 				format: 'd/m/Y',
 				formatter: 'date'
-			},{
-				name : 'address',
-				index: 'address',
-				sortable:false,
-				width: 100,
-				align: 'center'
 			},{					
-				name:'idBeneficiary',
-				index:'idBeneficiary',
+				name:'idUser',
+				index:'idUser',
 				width:100,
 				sortable:false,
 				search: false,
@@ -111,12 +108,12 @@
 			}],								
 			rowNum : 20,
 			pager : '#pgrilla',
-			sortname : 'idBeneficiary',
+			sortname : 'idUser',
 			autowidth: true,
 			rownumbers: true,
 			viewrecords : true,
-			sortorder : "idBeneficiary",
-			caption : "Beneficiary All"				
+			sortorder : "idUser",
+			caption : "User All"				
 
 		}).trigger('reloadGrid');
 	}
@@ -141,11 +138,11 @@
 		<tr><td colspan="7">&nbsp;</td></tr>
 		<tr>
 			<td colspan="7">&nbsp;&nbsp;
-				<button type="button" class="btn btn-primary" onclick="findBeneficiary()">
-					<img src="recursos/images/icons/buscar_16x16.png" alt="Find Beneficiary..." />&nbsp;Buscar
+				<button type="button" class="btn btn-primary" onclick="findUser()">
+					<img src="recursos/images/icons/buscar_16x16.png" alt="Find User..." />&nbsp;Find
 				</button>&nbsp;&nbsp;
-				<button type="button" class="btn btn-primary" onclick="NewBeneficiary">
-					<img src="recursos/images/icons/nuevo_16x16.png" alt="New Beneficiary..." />&nbsp;Nuevo
+				<button type="button" class="btn btn-primary" onclick="NewUser">
+					<img src="recursos/images/icons/nuevo_16x16.png" alt="New User..." />&nbsp;New
 				</button>
 			</td>
 		</tr>
