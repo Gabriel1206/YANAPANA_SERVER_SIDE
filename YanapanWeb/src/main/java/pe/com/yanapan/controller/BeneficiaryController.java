@@ -1,31 +1,19 @@
 package pe.com.yanapan.controller;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.aspectj.org.eclipse.jdt.internal.compiler.ast.FalseLiteral;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.mysql.jdbc.Messages;
-
-import pe.com.yanapan.beans.GenericResponseBean;
-import pe.com.yanapan.beans.ReportBeneficiary;
 import pe.com.yanapan.beans.ResponseListBean;
-import pe.com.yanapan.exceptions.BusinessException;
 import pe.com.yanapan.model.Beneficiary;
-import pe.com.yanapan.model.Imei;
-import pe.com.yanapan.model.User;
 import pe.com.yanapan.service.BeneficiaryService;
-import pe.com.yanapan.service.ImeiService;
-import pe.com.yanapan.utils.GlobalMessages;
 import pe.com.yanapan.utils.OperadoresUtil;
 
 @Controller
@@ -48,7 +36,6 @@ public class BeneficiaryController {
 			
 			ResponseListBean<Beneficiary> responseBean = new ResponseListBean<Beneficiary>();
 			
-			//ReportBeneficiary reportBeneficiary = beneficiaryService.reportBeneficiary(pagina, registros, idBeneficiary);
 			List<Beneficiary> reportBeneficiary = beneficiaryService.listAllBeneficiary();
 			
 			Integer totalBeneficiary = reportBeneficiary.size();

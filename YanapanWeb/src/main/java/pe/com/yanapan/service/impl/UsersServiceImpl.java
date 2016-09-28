@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import pe.com.yanapan.beans.Retorno;
 import pe.com.yanapan.dao.UsersDAO;
 import pe.com.yanapan.model.User;
 import pe.com.yanapan.service.UsersService;
@@ -19,6 +20,12 @@ public class UsersServiceImpl implements UsersService {
 	@Override
 	public List<User> listAllUser() {
 		return usersDAO.listAllUser();
+	}
+
+	@Override
+	public Retorno saveUser(User user) {
+		Retorno retornoUser = usersDAO.saveUser(user);
+		return retornoUser;
 	}
 
 }

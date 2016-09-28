@@ -1,6 +1,12 @@
 package pe.com.yanapan.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+
+
+
+
+
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,8 +18,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
+
 import pe.com.yanapan.beans.GenericResponseBean;
+import pe.com.yanapan.beans.RequiredFields;
 import pe.com.yanapan.beans.ResponseListBean;
+import pe.com.yanapan.beans.Retorno;
 import pe.com.yanapan.exceptions.BusinessException;
 import pe.com.yanapan.model.Beneficiary;
 import pe.com.yanapan.model.Imei;
@@ -22,6 +32,7 @@ import pe.com.yanapan.service.UserService;
 import pe.com.yanapan.service.UsersService;
 import pe.com.yanapan.utils.GlobalMessages;
 import pe.com.yanapan.utils.OperadoresUtil;
+//import com.google.gson.Gson;
 
 @Controller
 public class UserController {
@@ -92,4 +103,31 @@ public class UserController {
 			return responseBean;
 			
 	}
+	
+	
+	@RequestMapping(value = "/save-user.json", method = RequestMethod.POST, produces="application/json")
+	public @ResponseBody String saveUser(User user){
+		Gson gson = new Gson();
+		List<RequiredFields> camposObligatorios = new ArrayList<RequiredFields>();
+				
+		int codigo = 0;
+		String mensaje = "";
+		String listaObligatorios = gson.toJson(camposObligatorios);
+		
+		if(camposObligatorios.size() > 0){
+			
+			codigo = 0;
+			
+		}else{
+			
+			Retorno retorno = usersService.saveUser(user);
+			codigo = retorno.getCodigoUsuario();
+			mensaje = retorno.getMensajeRetorno();
+		}
+	 
+		String resultado = "{\"idUsuario\":" + codigo + ",\"camposObligatorios\":" + listaObligatorios + ",\"mensaje\":\"" + mensaje + "\"}";
+		
+		return resultado;
+	}
+	
 }

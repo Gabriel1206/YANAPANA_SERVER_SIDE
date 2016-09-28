@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import pe.com.yanapan.beans.Retorno;
 import pe.com.yanapan.dao.UsersDAO;
 import pe.com.yanapan.model.User;
 import pe.com.yanapan.utils.ClsConexion;
@@ -48,6 +49,22 @@ public class UsersDAOImpl implements UsersDAO {
 		}
 		
 		return lstUser;
+	}
+
+	@Override
+	public Retorno saveUser(User user) {
+		
+		Retorno retorno = new Retorno();
+		
+		String sql = "update user set nickUser = " + user.getNickUser() + ", password = " + user.getPassword() + " "
+				+ "Where idUser = ? ";
+		
+		try {
+			
+		}catch (Exception e){
+			
+		}
+		return retorno;
 	}
 	
 }

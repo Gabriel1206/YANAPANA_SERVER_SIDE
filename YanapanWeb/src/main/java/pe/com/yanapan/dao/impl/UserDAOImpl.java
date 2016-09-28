@@ -28,8 +28,8 @@ public class UserDAOImpl implements UserDAO {
 		try {
 			conn = conexion.getConnection();
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, user);
-			ps.setString(2, password);
+			ps.setString(1, user.toUpperCase());
+			ps.setString(2, password.toUpperCase());
 			ResultSet rs = ps.executeQuery();
 			
 			if(rs.next()){

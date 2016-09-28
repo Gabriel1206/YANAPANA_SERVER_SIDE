@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import pe.com.yanapan.dao.BeneficiaryDAO;
@@ -18,10 +17,6 @@ public class BeneficiaryDAOImpl implements BeneficiaryDAO {
 
 	private  Connection conn=null;
 	private  ClsConexion conexion= new ClsConexion();
-	
-	@SuppressWarnings("unchecked")
-	@Autowired
-	//private DatosSession datosSession;
 
 	@Override
 	public List<Beneficiary> listAllBeneficiary() {
