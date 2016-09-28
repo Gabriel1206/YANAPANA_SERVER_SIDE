@@ -10,6 +10,7 @@ public class Retorno {
 	String descripcionRol;
 	String nombresFull;
 	String nombreInstitucion;
+	
 	public String getCodigoRetorno() {
 		return codigoRetorno;
 	}

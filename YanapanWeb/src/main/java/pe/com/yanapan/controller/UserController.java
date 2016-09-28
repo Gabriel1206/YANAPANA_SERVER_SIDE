@@ -75,12 +75,17 @@ public class UserController {
 			GenericResponseBean<User> responseBean = new GenericResponseBean<User>();
 			responseBean.setObjeto(service.findByUserAndPassword(nickUser, password));
 			
-			if (nickUser.equals(responseBean.getObjeto().getNickUser()) && (password.equals(responseBean.getObjeto().getPassword())) ){
-				return "inicio";
+			if (responseBean.getObjeto() != null){
+				
+				if (nickUser.equals(responseBean.getObjeto().getNickUser()) && (password.equals(responseBean.getObjeto().getPassword())) ){
+					return "inicio";
+				} else {
+					return "login";
+				}
+			
 			} else {
 				return "login";
 			}
-			
 	}
 	
 	@RequestMapping(value = "/users-all.json", method = RequestMethod.POST, produces="application/json")

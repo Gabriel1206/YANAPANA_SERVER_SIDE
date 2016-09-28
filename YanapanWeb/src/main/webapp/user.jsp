@@ -125,7 +125,7 @@
 
 	
 	function userEdit(idUser, nickUser, password, firstName, lastName, birthdate){
-		alert("userEdit");
+		//alert("userEdit");
 		$('#user_modal').modal({
 			backdrop: 'static',
 			keyboard: false
@@ -158,14 +158,17 @@
 	
 	
 	function save(){
+		
 		var ruta = obtenerContexto();
 		jsonObj = [];
 		var parameters = new Object();
+		parameters.idUser = $("#idUser").val();
 		parameters.nickUser = $("#nickUser").val();
 		parameters.password = $("#password").val();
 		parameters.firstName = $("#firstName").val();
 		parameters.lastName = $("#lastName").val();
-		parameters.birthdate = $("#birthdate").val();
+		var fecha = new Date($("#birthdate").val());		
+		parameters.birthdate = fecha;
 		
 		$.ajax({
 			type: "POST",
@@ -212,6 +215,24 @@
 		});	
 	}
 
+	
+	function NewUser(){
+		$('#user_modal').modal({
+			backdrop: 'static',
+			keyboard: false
+		});
+		
+		$('#title').html("New User");
+		colorLabels();
+		
+		$('#idUser').val('');
+		$('#nickUser').val('');
+		$('#password').val('');
+		$('#firstName').val('');
+		$('#lastName').val('');
+		$('#birthdate').val('');
+	}
+	
 </script>
 
 </head>
