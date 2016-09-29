@@ -65,10 +65,10 @@ public class UsersDAOImpl implements UsersDAO {
 			try {
 				conn = conexion.getConnection();
 				PreparedStatement ps = conn.prepareStatement(sql);
-				ps.setString(1, user.getNickUser());
-				ps.setString(2, user.getPassword());
-				ps.setString(3, user.getFirstName());
-				ps.setString(4, user.getLastName());				
+				ps.setString(1, user.getNickUser().toUpperCase());
+				ps.setString(2, user.getPassword().toUpperCase());
+				ps.setString(3, user.getFirstName().toUpperCase());
+				ps.setString(4, user.getLastName().toUpperCase());				
 				ps.executeUpdate();
 				conn.close();
 				String codigoUser = String.valueOf(user.getIdUser());
@@ -89,10 +89,10 @@ public class UsersDAOImpl implements UsersDAO {
 				conn = conexion.getConnection();
 				PreparedStatement ps = conn.prepareStatement(sql);
 				ps.setInt(1, user.getIdUser());
-				ps.setString(2, user.getNickUser());
-				ps.setString(3, user.getPassword());
-				ps.setString(4, user.getFirstName());
-				ps.setString(5, user.getLastName());
+				ps.setString(2, user.getNickUser().toUpperCase());
+				ps.setString(3, user.getPassword().toUpperCase());
+				ps.setString(4, user.getFirstName().toUpperCase());
+				ps.setString(5, user.getLastName().toUpperCase());
 				Date birthdate = new Date();
 				birthdate = user.getBirthdate();
 				ps.setDate(6, (java.sql.Date) birthdate);

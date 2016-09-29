@@ -44,18 +44,18 @@
 				opciones += rowObject.idUser + "','";
 				opciones += rowObject.password + "','";
 				opciones += rowObject.nickUser + "','";
-				opciones += rowObject.firstName + "','";
+				opciones += rowObject.firstName.replace(/\s/g,"_") + "','";
 				opciones += rowObject.lastName.replace(/\s/g,"_") + "','";
 				opciones += rowObject.birthdate + "') >";
 				opciones += "<img src='/"+ruta+"/recursos/images/icons/edit_24x24.png' border='0' title='User EDIT...'/>";
 				opciones += "</a>";
 				
-				opciones += "&nbsp;&nbsp;";
+				/*opciones += "&nbsp;&nbsp;";
 				
 				opciones += "<a href=javascript:userDelete('";
 				opciones += rowObject.idUser + "') >";
 				opciones += "<img src='/"+ruta+"/recursos/images/icons/eliminar_24x24.png' border='0' title='User DELETE'/>";
-				opciones += "</a>";
+				opciones += "</a>";*/
 				
 				opciones += "</center>";
 				
@@ -137,7 +137,7 @@
 		$('#idUser').val(idUser);
 		$('#nickUser').val(nickUser);
 		$('#password').val(password);
-		$('#firstName').val(firstName);
+		$('#firstName').val(firstName.replace(/\_/g," "));
 		$('#lastName').val(lastName.replace(/\_/g," "));
 		$('#birthdate').val(birthdate);
 	}
