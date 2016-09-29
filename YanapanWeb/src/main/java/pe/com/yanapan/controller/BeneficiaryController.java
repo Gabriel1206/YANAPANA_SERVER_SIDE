@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import pe.com.yanapan.beans.ResponseListBean;
+import pe.com.yanapan.exceptions.BusinessException;
 import pe.com.yanapan.model.Beneficiary;
 import pe.com.yanapan.service.BeneficiaryService;
 import pe.com.yanapan.utils.OperadoresUtil;
@@ -32,11 +33,11 @@ public class BeneficiaryController {
 	public @ResponseBody ResponseListBean<Beneficiary> reportBeneficiarys(
 			@RequestParam(value = "page", defaultValue = "1") Integer pagina, 
 			@RequestParam(value = "row", defaultValue = "20") Integer registros,
-			@RequestParam(value = "idBeneficiary", defaultValue = "0") Integer idBeneficiary) {
+			@RequestParam(value = "idBeneficiary", defaultValue = "0") Integer idBeneficiary) throws BusinessException {
 			
 			ResponseListBean<Beneficiary> responseBean = new ResponseListBean<Beneficiary>();
 			
-			List<Beneficiary> reportBeneficiary = beneficiaryService.listAllBeneficiary();
+			List<Beneficiary> reportBeneficiary = beneficiaryService.listAll();
 			
 			Integer totalBeneficiary = reportBeneficiary.size();
 			responseBean.setPage(pagina);

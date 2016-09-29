@@ -112,13 +112,11 @@
 					<groupId>org.slf4j</groupId>
 					    <artifactId>slf4j-log4j12</artifactId>
 				</exclusion>
-<<<<<<< HEAD
+
 			</exclusions>
 		</dependency> 
-=======
 			</exclusions-->
 		</dependency>
->>>>>>> d94ce494ab9f8c5610d34c6dd957abaa74de1c6c
 		
 		<dependency>
 			<groupId>org.apache.tiles</groupId>
