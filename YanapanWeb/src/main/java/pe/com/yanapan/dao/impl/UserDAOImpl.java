@@ -28,8 +28,8 @@ public class UserDAOImpl implements UserDAO {
 		try {
 			conn = conexion.getConnection();
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, user);
-			ps.setString(2, password);
+			ps.setString(1, user.toUpperCase());
+			ps.setString(2, password.toUpperCase());
 			ResultSet rs = ps.executeQuery();
 			
 			if(rs.next()){
@@ -56,6 +56,7 @@ public class UserDAOImpl implements UserDAO {
 		return userBean;
 	}
 
+<<<<<<< HEAD
 	@Override
 	public User insert(User user) throws BusinessException {
 		
@@ -84,5 +85,7 @@ public class UserDAOImpl implements UserDAO {
 		
 		return user;
 	}
+=======
+>>>>>>> d94ce494ab9f8c5610d34c6dd957abaa74de1c6c
 
 }

@@ -2,6 +2,8 @@ package pe.com.yanapan.beans;
 
 import java.util.List;
 
+import pe.com.yanapan.model.Beneficiary;
+
 /**
  * @author Manuel Castañeda
  *
@@ -82,7 +84,6 @@ public class ResponseListBean<T> {
 		builder.append("]");
 		return builder.toString();
 	}
-
 	
 
 }
