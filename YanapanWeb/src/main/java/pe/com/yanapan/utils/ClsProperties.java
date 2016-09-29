@@ -27,11 +27,10 @@ public class ClsProperties {
             //se leen el archivo .properties
             Properties propiedades;
             propiedades=new Properties();
+
             File file = null;
-            //if ( (System.getProperty("os.name")).equals("Windows") ) 
-            	//file= new File("D:/UPC/moviles/conexion.properties");
-            /*else*/
-            	file= new File("/usr/share/jboss-eap-6.1/conexion/conexion.properties");
+           	file= new File("/usr/share/jboss-eap-6.1/conexion/conexion.properties");
+//            	file= new File("D:/UPC/moviles/conexion.properties");
             
             in=new FileInputStream(file);
             propiedades.load(in);

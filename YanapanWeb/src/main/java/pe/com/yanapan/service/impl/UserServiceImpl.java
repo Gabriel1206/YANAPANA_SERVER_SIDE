@@ -21,4 +21,12 @@ public class UserServiceImpl implements UserService {
 		return dao.findByUserAndPassword(user, password);
 	}
 
+	@Override
+	public User insert(User user) throws BusinessException {
+		
+		UserDAO dao = new UserDAOImpl();
+		
+		return dao.insert(user);
+	}
+
 }

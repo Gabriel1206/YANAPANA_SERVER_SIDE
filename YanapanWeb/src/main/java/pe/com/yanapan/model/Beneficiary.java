@@ -3,21 +3,32 @@ package pe.com.yanapan.model;
 import java.util.Date;
 
 public class Beneficiary {
+
+
 	private int idBeneficiary;
+	private String documentBeneficiary;
 	private String firstName;
 	private String lastName;
-	private Date birthDate;
+	private Date birthdate;
 	private String address;
-	private char flagDisabled;
-	private char flagKnowledge;
+	private String flagDisabled;
+	private String flagKnowledge;
 	private String descKnowledge;
-	private int idUbigeo;
-	private int typeBeneficiary;
+	private TypeBeneficiary typeBeneficiary;
+	private Ubigeo ubigeo;
+	
+	
 	public int getIdBeneficiary() {
 		return idBeneficiary;
 	}
 	public void setIdBeneficiary(int idBeneficiary) {
 		this.idBeneficiary = idBeneficiary;
+	}
+	public String getDocumentBeneficiary() {
+		return documentBeneficiary;
+	}
+	public void setDocumentBeneficiary(String documentBeneficiary) {
+		this.documentBeneficiary = documentBeneficiary;
 	}
 	public String getFirstName() {
 		return firstName;
@@ -31,11 +42,11 @@ public class Beneficiary {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public Date getBirthDate() {
-		return birthDate;
+	public Date getBirthdate() {
+		return birthdate;
 	}
-	public void setBirthDate(Date birthDate) {
-		this.birthDate = birthDate;
+	public void setBirthdate(Date birthdate) {
+		this.birthdate = birthdate;
 	}
 	public String getAddress() {
 		return address;
@@ -43,16 +54,16 @@ public class Beneficiary {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public char getFlagDisabled() {
+	public String getFlagDisabled() {
 		return flagDisabled;
 	}
-	public void setFlagDisabled(char flagDisabled) {
+	public void setFlagDisabled(String flagDisabled) {
 		this.flagDisabled = flagDisabled;
 	}
-	public char getFlagKnowledge() {
+	public String getFlagKnowledge() {
 		return flagKnowledge;
 	}
-	public void setFlagKnowledge(char flagKnowledge) {
+	public void setFlagKnowledge(String flagKnowledge) {
 		this.flagKnowledge = flagKnowledge;
 	}
 	public String getDescKnowledge() {
@@ -61,26 +72,30 @@ public class Beneficiary {
 	public void setDescKnowledge(String descKnowledge) {
 		this.descKnowledge = descKnowledge;
 	}
-	public int getIdUbigeo() {
-		return idUbigeo;
-	}
-	public void setIdUbigeo(int idUbigeo) {
-		this.idUbigeo = idUbigeo;
-	}
-	public int getTypeBeneficiary() {
+	public TypeBeneficiary getTypeBeneficiary() {
 		return typeBeneficiary;
 	}
-	public void setTypeBeneficiary(int typeBeneficiary) {
+	public void setTypeBeneficiary(TypeBeneficiary typeBeneficiary) {
 		this.typeBeneficiary = typeBeneficiary;
 	}
-	
+	public Ubigeo getUbigeo() {
+		return ubigeo;
+	}
+	public void setUbigeo(Ubigeo ubigeo) {
+		this.ubigeo = ubigeo;
+	}
 	@Override
 	public String toString() {
-		return "Benficiary [idBeneficiary=" + idBeneficiary + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", birthDate=" + birthDate
-				+ ", address=" + address + ", flagDisabled=" + flagDisabled
-				+ ", flagKnowledge=" + flagKnowledge + ", descKnowledge=" + descKnowledge 
-				+ ", idUbigeo=" + idUbigeo + ", typeBeneficiary=" + typeBeneficiary + "]";
+		return "Beneficiary [idBeneficiary=" + idBeneficiary
+				+ ", documentBeneficiary=" + documentBeneficiary
+				+ ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", birthdate=" + birthdate + ", address=" + address
+				+ ", flagDisabled=" + flagDisabled + ", flagKnowledge="
+				+ flagKnowledge + ", descKnowledge=" + descKnowledge
+				+ ", typeBeneficiary=" + typeBeneficiary + ", ubigeo=" + ubigeo
+				+ "]";
 	}
+	
+	
+	
 }
- 

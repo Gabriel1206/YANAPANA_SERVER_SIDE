@@ -5,6 +5,7 @@ import java.util.Date;
 public class User {
 
 	private int idUser;
+	private String documentUser;
 	private String nickUser;
 	private String password;
 	private String firstName;
@@ -55,13 +56,21 @@ public class User {
 	public void setProfile(Profile profile) {
 		this.profile = profile;
 	}
-	
+		
+	public String getDocumentUser() {
+		return documentUser;
+	}
+	public void setDocumentUser(String documentUser) {
+		this.documentUser = documentUser;
+	}
 	@Override
 	public String toString() {
-		return "User [idUser=" + idUser + ", nickUser=" + nickUser
-				+ ", password=" + password + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", birthdate=" + birthdate
-				+ ", profile=" + profile + "]";
+		return "User [idUser=" + idUser + ", documentUser=" + documentUser
+				+ ", nickUser=" + nickUser + ", password=" + password
+				+ ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", birthdate=" + birthdate + ", profile=" + profile + "]";
 	}
+	
+	
 		
 }

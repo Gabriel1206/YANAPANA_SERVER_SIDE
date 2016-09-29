@@ -2,29 +2,42 @@ package pe.com.yanapan.service.impl;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-
-import org.springframework.stereotype.Service;
-
+import pe.com.yanapan.dao.BeneficiaryDAO;
+import pe.com.yanapan.dao.impl.BeneficiaryDAOImpl;
+import pe.com.yanapan.exceptions.BusinessException;
 import pe.com.yanapan.model.Beneficiary;
 import pe.com.yanapan.service.BeneficiaryService;
-import pe.com.yanapan.beans.ReportBeneficiary;
-import pe.com.yanapan.dao.BeneficiaryDAO;
 
-@Service
-public class BeneficiaryServiceImpl implements BeneficiaryService {
+public class BeneficiaryServiceImpl implements BeneficiaryService{
 
-	@Resource
-	private BeneficiaryDAO beneficiaryDAO;
-	
 	@Override
-	public List<Beneficiary> listAllBeneficiary() {
-		return beneficiaryDAO.listAllBeneficiary();
+	public Beneficiary findById(int idBeneficiary) throws BusinessException {
+		
+		BeneficiaryDAO dao = new BeneficiaryDAOImpl();
+		
+		return dao.findById(idBeneficiary);
 	}
 
-	/*@Override
-	public ReportBeneficiary reportBeneficiary(int pagina, int registros, int idBeneficiary) {
-		return beneficiaryDAO.reportBeneficiary(pagina, registros, idBeneficiary);
-	}*/
+	@Override
+	public List<Beneficiary> listAll() throws BusinessException {
+		
+		BeneficiaryDAO dao = new BeneficiaryDAOImpl();
+		
+		return dao.listAll();
+	}
+
+	@Override
+	public Beneficiary insert(Beneficiary beneficiary) throws BusinessException {
+		
+		BeneficiaryDAO dao = new BeneficiaryDAOImpl();
+		
+		return dao.insert(beneficiary);
+	}
+
+	@Override
+	public Beneficiary update(Beneficiary beneficiary) throws BusinessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
