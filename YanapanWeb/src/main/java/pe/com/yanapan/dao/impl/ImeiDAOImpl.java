@@ -11,7 +11,6 @@ import pe.com.yanapan.utils.ClsConexion;
 
 public class ImeiDAOImpl implements ImeiDAO {
 
-	private  Connection conn=null;
 	private  ClsConexion conexion= new ClsConexion();
 	
 	@Override
