@@ -5,9 +5,9 @@ import java.util.Date;
 public class WorkingDate {
 
 	private int idWorkingDate;
-	private Date startDay;
-	private Date endDay;
-	private int idUser;
+	private Date time;
+	private String type;
+	private User user;
 	
 	
 	public int getIdWorkingDate() {
@@ -16,29 +16,32 @@ public class WorkingDate {
 	public void setIdWorkingDate(int idWorkingDate) {
 		this.idWorkingDate = idWorkingDate;
 	}
-	public Date getStartDay() {
-		return startDay;
+	public Date getTime() {
+		return time;
 	}
-	public void setStartDay(Date startDay) {
-		this.startDay = startDay;
+	public void setTime(Date time) {
+		this.time = time;
 	}
-	public Date getEndDay() {
-		return endDay;
+	public String getType() {
+		return type;
 	}
-	public void setEndDay(Date endDay) {
-		this.endDay = endDay;
+	public void setType(String type) {
+		this.type = type;
 	}
-	public int getIdUser() {
-		return idUser;
+	public User getUser() {
+		return user;
 	}
-	public void setIdUser(int idUser) {
-		this.idUser = idUser;
+	public void setUser(User user) {
+		this.user = user;
 	}
 	@Override
 	public String toString() {
-		return "WorkingDate [idWorkingDate=" + idWorkingDate + ", startDay="
-				+ startDay + ", endDay=" + endDay + ", idUser=" + idUser + "]";
+		return "WorkingDate [idWorkingDate=" + idWorkingDate + ", time=" + time
+				+ ", type=" + type + ", user=" + user + "]";
 	}
+	
+	
+	
 	
 	
 	

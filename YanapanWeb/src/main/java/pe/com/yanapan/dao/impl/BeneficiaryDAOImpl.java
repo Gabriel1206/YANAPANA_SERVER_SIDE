@@ -21,10 +21,9 @@ public class BeneficiaryDAOImpl implements BeneficiaryDAO{
 	
 	@Override
 	public Beneficiary findById(int idBeneficiary) throws BusinessException {
-		
 		String sql = "select idBeneficiary,documentBeneficiary, firstName, lastName,birthDate,address,"
 				+ "flagDisabled,flagKnowledge,descKnowledge,Ubigeo_idUbigeo,TypeBeneficiary_idTypeBeneficiary "
-				+ "from workingdate "
+				+ "from beneficiary "
 				+ "where idBeneficiary = ?";
 		
 		Connection conn = null;
@@ -67,7 +66,7 @@ public class BeneficiaryDAOImpl implements BeneficiaryDAO{
 
 		String sql = "select idBeneficiary,documentBeneficiary, firstName, lastName,birthDate,address,"
 				+ "flagDisabled,flagKnowledge,descKnowledge,Ubigeo_idUbigeo,TypeBeneficiary_idTypeBeneficiary "
-				+ "from workingdate ";
+				+ "from beneficiary ";
 		
 		Connection conn = null;
 		Beneficiary beneficiaryBean = null;

@@ -29,4 +29,12 @@ public class UserServiceImpl implements UserService {
 		return dao.insert(user);
 	}
 
+	@Override
+	public User findById(int idUser) throws BusinessException {
+		
+		UserDAO dao = new UserDAOImpl();
+		
+		return dao.findById(idUser);
+	}
+
 }

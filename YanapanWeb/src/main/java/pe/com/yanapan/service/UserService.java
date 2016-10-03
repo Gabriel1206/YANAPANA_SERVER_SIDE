@@ -7,4 +7,5 @@ public interface UserService {
 
 	User findByUserAndPassword(String user, String password) throws BusinessException;
 	User insert(User user) throws BusinessException;
+	User findById(int idUser) throws BusinessException;
 }

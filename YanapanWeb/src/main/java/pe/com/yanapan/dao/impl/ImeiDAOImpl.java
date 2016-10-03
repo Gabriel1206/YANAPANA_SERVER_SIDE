@@ -79,7 +79,7 @@ public class ImeiDAOImpl implements ImeiDAO {
 	@Override
 	public Imei insert(Imei imei) throws BusinessException {
 		
-		String sql = "insert into (descImei,latitude) imei "
+		String sql = "insert into imei(descImei)  "
 				+ "values(?) ";
 		
 		Connection conn = null;
@@ -92,11 +92,12 @@ public class ImeiDAOImpl implements ImeiDAO {
 			
 			ps.close();
 			conn.close();
+			return imei;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return imei;
+		return null;
 	}
 
 }

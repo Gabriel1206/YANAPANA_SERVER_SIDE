@@ -25,7 +25,7 @@ public class WorkingDateController {
 		return service.insert(workingDate);		
 	}
 	
-	@RequestMapping(value = "v1/workingdate", method = RequestMethod.GET, consumes = MediaType.ALL_VALUE, produces = "application/json")
+	@RequestMapping(value = "/v1/workingdate", method = RequestMethod.GET, consumes = MediaType.ALL_VALUE, produces = "application/json")
 	public @ResponseBody List<WorkingDate> listarWorkingDate() throws BusinessException{
 		
 		return service.listAll();

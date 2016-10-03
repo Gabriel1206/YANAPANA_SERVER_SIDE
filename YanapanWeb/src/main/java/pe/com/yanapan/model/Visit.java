@@ -7,7 +7,7 @@ public class Visit {
 	private int idVisit;
 	private String longitude;
 	private String latitude;
-	private List<DetailVisitBeneficiary> lstDetailBeneficiary;
+	private List<DetailVisitBeneficiary> lstDetailVisitBeneficiary;
 	
 	
 	public int getIdVisit() {
@@ -29,18 +29,18 @@ public class Visit {
 		this.latitude = latitude;
 	}
 	public List<DetailVisitBeneficiary> getLstDetailBeneficiary() {
-		return lstDetailBeneficiary;
+		return lstDetailVisitBeneficiary;
 	}
 	public void setLstDetailBeneficiary(
-			List<DetailVisitBeneficiary> lstDetailBeneficiary) {
-		this.lstDetailBeneficiary = lstDetailBeneficiary;
+			List<DetailVisitBeneficiary> lstDetailVisitBeneficiary) {
+		this.lstDetailVisitBeneficiary = lstDetailVisitBeneficiary;
 	}
 	
 	@Override
 	public String toString() {
 		return "Visit [idVisit=" + idVisit + ", longitude=" + longitude
-				+ ", latitude=" + latitude + ", lstDetailBeneficiary="
-				+ lstDetailBeneficiary + "]";
+				+ ", latitude=" + latitude + ", lstDetailVisitBeneficiary="
+				+ lstDetailVisitBeneficiary + "]";
 	}
 	
 		

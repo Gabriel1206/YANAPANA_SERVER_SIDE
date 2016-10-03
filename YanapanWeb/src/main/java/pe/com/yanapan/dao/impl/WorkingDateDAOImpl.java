@@ -21,7 +21,7 @@ public class WorkingDateDAOImpl implements WorkingDateDAO {
 	@Override
 	public List<WorkingDate> findById(int idWorkingDate) throws BusinessException {
 		
-		String sql = "select idWorkingDate, startDay, endDay from workingdate "
+		String sql = "select idWorkingDate, time, type, User_idUsser from workingdate "
 				+ "where idWorkingDate = ?";
 		
 		Connection conn = null;
@@ -37,8 +37,9 @@ public class WorkingDateDAOImpl implements WorkingDateDAO {
 			while (rs.next()) {
 				workingDateBean = new WorkingDate();
 				workingDateBean.setIdWorkingDate(rs.getInt(1));
-				workingDateBean.setStartDay(rs.getDate(2));
-				workingDateBean.setEndDay(rs.getDate(3));
+				workingDateBean.setTime(rs.getDate(2));
+				workingDateBean.setType(rs.getString(3));
+				workingDateBean.setUser(new UserDAOImpl().findById(rs.getInt(4)));
 				lstWorkingDates.add(workingDateBean);
 			}
 			rs.close();
@@ -52,7 +53,7 @@ public class WorkingDateDAOImpl implements WorkingDateDAO {
 
 	@Override
 	public List<WorkingDate> findByUser(int idUser) throws BusinessException {
-		String sql = "select idWorkingDate, startDay, endDay from workingdate "
+		String sql = "select idWorkingDate, time, type, User_idUsser from workingdate "
 				+ "where User_idUser = ?";
 		
 		Connection conn = null;
@@ -68,8 +69,9 @@ public class WorkingDateDAOImpl implements WorkingDateDAO {
 			while (rs.next()) {
 				workingDateBean = new WorkingDate();
 				workingDateBean.setIdWorkingDate(rs.getInt(1));
-				workingDateBean.setStartDay(rs.getDate(2));
-				workingDateBean.setEndDay(rs.getDate(3));
+				workingDateBean.setTime(rs.getDate(2));
+				workingDateBean.setType(rs.getString(3));
+				workingDateBean.setUser(new UserDAOImpl().findById(rs.getInt(4)));
 				lstWorkingDates.add(workingDateBean);
 			}
 			rs.close();
@@ -84,14 +86,15 @@ public class WorkingDateDAOImpl implements WorkingDateDAO {
 	@Override
 	public WorkingDate insert(WorkingDate workingDate) throws BusinessException {
 		
-		String sql = "insert into workingdate(time,type,User_idUser) values(?,?) ";
+		String sql = "insert into workingdate(time,type,User_idUser) values(?,?,?) ";
 		Connection conn = null;
 						
 		try {
 			conn = conexion.getConnection();
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setDate(1, (Date) workingDate.getStartDay());
-			ps.setInt(2, workingDate.getIdUser());
+			ps.setDate(1, (Date) workingDate.getTime());
+			ps.setString(2, workingDate.getType());
+			ps.setInt(3, workingDate.getUser().getIdUser());
 			ps.executeUpdate();
 			
 			ps.close();
@@ -105,7 +108,7 @@ public class WorkingDateDAOImpl implements WorkingDateDAO {
 	@Override
 	public List<WorkingDate> listAll() throws BusinessException {
 		
-		String sql = "select idWorkingDate, startDay, endDay from workingdate ";
+		String sql = "select idWorkingDate, time, type, User_idUser from workingdate ";
 		
 		Connection conn = null;
 		WorkingDate workingDateBean = null;
@@ -119,8 +122,9 @@ public class WorkingDateDAOImpl implements WorkingDateDAO {
 			while (rs.next()) {
 				workingDateBean = new WorkingDate();
 				workingDateBean.setIdWorkingDate(rs.getInt(1));
-				workingDateBean.setStartDay(rs.getDate(2));
-				workingDateBean.setEndDay(rs.getDate(3));
+				workingDateBean.setTime(rs.getDate(2));
+				workingDateBean.setType(rs.getString(3));
+				workingDateBean.setUser(new UserDAOImpl().findById(rs.getInt(4)));
 				lstWorkingDates.add(workingDateBean);
 			}
 			rs.close();
