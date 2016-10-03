@@ -102,6 +102,36 @@ public class WorkingDateDAOImpl implements WorkingDateDAO {
 		return workingDate;
 	}
 
+	@Override
+	public List<WorkingDate> listAll() throws BusinessException {
+		
+		String sql = "select idWorkingDate, startDay, endDay from workingdate ";
+		
+		Connection conn = null;
+		WorkingDate workingDateBean = null;
+		List<WorkingDate> lstWorkingDates = new ArrayList<WorkingDate>();
+		
+		try {
+			conn = conexion.getConnection();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				workingDateBean = new WorkingDate();
+				workingDateBean.setIdWorkingDate(rs.getInt(1));
+				workingDateBean.setStartDay(rs.getDate(2));
+				workingDateBean.setEndDay(rs.getDate(3));
+				lstWorkingDates.add(workingDateBean);
+			}
+			rs.close();
+			ps.close();
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return lstWorkingDates;		
+	}
+
 	
 
 }

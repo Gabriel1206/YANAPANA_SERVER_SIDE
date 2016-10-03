@@ -71,6 +71,8 @@ public class DetailVisitBeneficiaryDAOImpl implements DetailVisitBeneficiaryDAO{
 			ps.setString(4, detailVisitBeneficiary.getUrlPhoto1());
 			ps.setString(5, detailVisitBeneficiary.getUrlPhoto2());
 			
+			new BeneficiaryDAOImpl().insert(detailVisitBeneficiary.getBeneficiary());
+			
 			ps.executeUpdate();
 			ps.close();
 			conn.close();

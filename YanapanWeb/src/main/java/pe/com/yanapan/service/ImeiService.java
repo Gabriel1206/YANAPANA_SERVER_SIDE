@@ -6,4 +6,5 @@ import pe.com.yanapan.model.Imei;
 public interface ImeiService {
 
 	Imei findByDescription (String description) throws BusinessException;
+	Imei insert(Imei imei) throws BusinessException;
 }

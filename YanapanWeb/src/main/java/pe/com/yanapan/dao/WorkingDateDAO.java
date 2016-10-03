@@ -9,6 +9,7 @@ public interface WorkingDateDAO {
 	
 	List<WorkingDate> findById(int idWorkingDate) throws BusinessException;
 	List<WorkingDate> findByUser(int idUser) throws BusinessException;
+	List<WorkingDate> listAll() throws BusinessException;
 	WorkingDate insert(WorkingDate workingDate) throws BusinessException;
 	
 }

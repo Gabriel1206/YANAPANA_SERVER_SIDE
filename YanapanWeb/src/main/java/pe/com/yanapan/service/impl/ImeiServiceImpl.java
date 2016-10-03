@@ -21,4 +21,12 @@ public class ImeiServiceImpl implements ImeiService{
 		return dao.findByDescription(description);
 	}
 
+	@Override
+	public Imei insert(Imei imei) throws BusinessException {
+		
+		ImeiDAO dao= new ImeiDAOImpl();
+		
+		return dao.insert(imei);
+	}
+
 }
