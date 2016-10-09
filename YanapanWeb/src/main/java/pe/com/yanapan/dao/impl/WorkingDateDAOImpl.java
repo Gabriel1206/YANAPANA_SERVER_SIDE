@@ -4,8 +4,14 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+
+
+
 
 
 
@@ -17,11 +23,12 @@ import pe.com.yanapan.utils.ClsConexion;
 public class WorkingDateDAOImpl implements WorkingDateDAO {
 
 	private  ClsConexion conexion= new ClsConexion();
+	DateFormat df = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
 	
 	@Override
 	public List<WorkingDate> findById(int idWorkingDate) throws BusinessException {
 		
-		String sql = "select idWorkingDate, time, type, User_idUsser from workingdate "
+		String sql = "select idWorkingDate, time, type,longitude,latitude, User_idUsser from workingdate "
 				+ "where idWorkingDate = ?";
 		
 		Connection conn = null;
@@ -37,9 +44,11 @@ public class WorkingDateDAOImpl implements WorkingDateDAO {
 			while (rs.next()) {
 				workingDateBean = new WorkingDate();
 				workingDateBean.setIdWorkingDate(rs.getInt(1));
-				workingDateBean.setTime(rs.getDate(2));
+				workingDateBean.setTime(df.format(rs.getTimestamp(2)));
 				workingDateBean.setType(rs.getString(3));
-				workingDateBean.setUser(new UserDAOImpl().findById(rs.getInt(4)));
+				workingDateBean.setLongitude(rs.getString(4));
+				workingDateBean.setLatitude(rs.getString(5));
+				workingDateBean.setUser(new UserDAOImpl().findById(rs.getInt(6)));
 				lstWorkingDates.add(workingDateBean);
 			}
 			rs.close();
@@ -53,8 +62,9 @@ public class WorkingDateDAOImpl implements WorkingDateDAO {
 
 	@Override
 	public List<WorkingDate> findByUser(int idUser) throws BusinessException {
-		String sql = "select idWorkingDate, time, type, User_idUsser from workingdate "
-				+ "where User_idUser = ?";
+				
+		String sql = "select idWorkingDate, time, type,longitude,latitude, User_idUser from workingdate "
+				+ "where User_idUser = ? order by time desc";
 		
 		Connection conn = null;
 		WorkingDate workingDateBean = null;
@@ -69,9 +79,11 @@ public class WorkingDateDAOImpl implements WorkingDateDAO {
 			while (rs.next()) {
 				workingDateBean = new WorkingDate();
 				workingDateBean.setIdWorkingDate(rs.getInt(1));
-				workingDateBean.setTime(rs.getDate(2));
+				workingDateBean.setTime(df.format(rs.getTimestamp(2)));
 				workingDateBean.setType(rs.getString(3));
-				workingDateBean.setUser(new UserDAOImpl().findById(rs.getInt(4)));
+				workingDateBean.setLongitude(rs.getString(4));
+				workingDateBean.setLatitude(rs.getString(5));
+				workingDateBean.setUser(new UserDAOImpl().findById(rs.getInt(6)));
 				lstWorkingDates.add(workingDateBean);
 			}
 			rs.close();
@@ -86,19 +98,22 @@ public class WorkingDateDAOImpl implements WorkingDateDAO {
 	@Override
 	public WorkingDate insert(WorkingDate workingDate) throws BusinessException {
 		
-		String sql = "insert into workingdate(time,type,User_idUser) values(?,?,?) ";
+		String sql = "insert into workingdate(time,type,longitude,latitude,User_idUser) values(?,?,?,?,?) ";
 		Connection conn = null;
 						
 		try {
 			conn = conexion.getConnection();
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setDate(1, (Date) workingDate.getTime());
+			ps.setTimestamp(1, new Timestamp(new java.util.Date().getTime()));
 			ps.setString(2, workingDate.getType());
-			ps.setInt(3, workingDate.getUser().getIdUser());
+			ps.setString(3, workingDate.getLongitude());
+			ps.setString(4, workingDate.getLatitude());
+			ps.setInt(5, workingDate.getUser().getIdUser());
 			ps.executeUpdate();
 			
 			ps.close();
 			conn.close();
+			workingDate = findByUser(workingDate.getUser().getIdUser()).get(0);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -108,7 +123,7 @@ public class WorkingDateDAOImpl implements WorkingDateDAO {
 	@Override
 	public List<WorkingDate> listAll() throws BusinessException {
 		
-		String sql = "select idWorkingDate, time, type, User_idUser from workingdate ";
+		String sql = "select idWorkingDate, time, type,longitude,latitude, User_idUser from workingdate ";
 		
 		Connection conn = null;
 		WorkingDate workingDateBean = null;
@@ -122,9 +137,11 @@ public class WorkingDateDAOImpl implements WorkingDateDAO {
 			while (rs.next()) {
 				workingDateBean = new WorkingDate();
 				workingDateBean.setIdWorkingDate(rs.getInt(1));
-				workingDateBean.setTime(rs.getDate(2));
+				workingDateBean.setTime(df.format(rs.getTimestamp(2)));
 				workingDateBean.setType(rs.getString(3));
-				workingDateBean.setUser(new UserDAOImpl().findById(rs.getInt(4)));
+				workingDateBean.setLongitude(rs.getString(4));
+				workingDateBean.setLatitude(rs.getString(5));
+				workingDateBean.setUser(new UserDAOImpl().findById(rs.getInt(6)));
 				lstWorkingDates.add(workingDateBean);
 			}
 			rs.close();

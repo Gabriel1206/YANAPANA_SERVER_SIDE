@@ -5,6 +5,10 @@ public class Imei {
 	private int idImei;
 	private String descImei;
 	
+
+	public Imei() {
+		super();
+	}
 	
 	public int getIdImei() {
 		return idImei;

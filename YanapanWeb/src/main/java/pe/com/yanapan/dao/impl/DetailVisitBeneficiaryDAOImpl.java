@@ -65,14 +65,14 @@ public class DetailVisitBeneficiaryDAOImpl implements DetailVisitBeneficiaryDAO{
 			conn = conexion.getConnection();
 			PreparedStatement ps = conn.prepareStatement(sql);
 			
+			detailVisitBeneficiary.setBeneficiary(new BeneficiaryDAOImpl().insert(detailVisitBeneficiary.getBeneficiary()));
+			
 			ps.setInt(1, detailVisitBeneficiary.getIdVisit());
 			ps.setInt(2, detailVisitBeneficiary.getBeneficiary().getIdBeneficiary());
 			ps.setString(3, detailVisitBeneficiary.getNote());
 			ps.setString(4, detailVisitBeneficiary.getUrlPhoto1());
 			ps.setString(5, detailVisitBeneficiary.getUrlPhoto2());
-			
-			new BeneficiaryDAOImpl().insert(detailVisitBeneficiary.getBeneficiary());
-			
+						
 			ps.executeUpdate();
 			ps.close();
 			conn.close();

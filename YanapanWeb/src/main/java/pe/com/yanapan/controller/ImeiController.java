@@ -18,7 +18,7 @@ import pe.com.yanapan.service.ImeiService;
 import pe.com.yanapan.utils.GlobalMessages;
 
 @Controller
-public class ImeiController {
+public class ImeiController extends ExceptionHandlingController{
 
 	@Autowired
 	private ImeiService service;

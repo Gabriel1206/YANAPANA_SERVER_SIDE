@@ -44,7 +44,7 @@ public class UserController {
 	@Autowired
 	private UsersService usersService;
 	
-	@RequestMapping(value = "v1/users", method = RequestMethod.GET, consumes = MediaType.ALL_VALUE)
+	@RequestMapping(value = "/v1/users", method = RequestMethod.GET, consumes = MediaType.ALL_VALUE)
 	public @ResponseBody User validateAcces(
 			String user, String password) throws BusinessException {
 		User userBean = new User();
@@ -53,7 +53,7 @@ public class UserController {
 		return userBean;		
 	}
 	
-	@RequestMapping(value = "v1/users", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/v1/users", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody User insertUser(
 			@RequestBody User user) throws BusinessException {
 		

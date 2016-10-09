@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +21,7 @@ import pe.com.yanapan.utils.ClsConexion;
 public class BeneficiaryDAOImpl implements BeneficiaryDAO{
 
 	private  ClsConexion conexion= new ClsConexion();
+	DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 	
 	@Override
 	public Beneficiary findById(int idBeneficiary) throws BusinessException {
@@ -41,7 +45,7 @@ public class BeneficiaryDAOImpl implements BeneficiaryDAO{
 				beneficiaryBean.setDocumentBeneficiary(rs.getString(2));
 				beneficiaryBean.setFirstName(rs.getString(3));
 				beneficiaryBean.setLastName(rs.getString(4));
-				beneficiaryBean.setBirthdate(rs.getDate(5));
+				beneficiaryBean.setBirthdate(df.format(rs.getTimestamp(5)));
 				beneficiaryBean.setAddress(rs.getString(6));
 				beneficiaryBean.setFlagDisabled(rs.getString(7));
 				beneficiaryBean.setFlagKnowledge(rs.getString(8));
@@ -66,7 +70,7 @@ public class BeneficiaryDAOImpl implements BeneficiaryDAO{
 
 		String sql = "select idBeneficiary,documentBeneficiary, firstName, lastName,birthDate,address,"
 				+ "flagDisabled,flagKnowledge,descKnowledge,Ubigeo_idUbigeo,TypeBeneficiary_idTypeBeneficiary "
-				+ "from beneficiary ";
+				+ "from beneficiary order by idBeneficiary desc";
 		
 		Connection conn = null;
 		Beneficiary beneficiaryBean = null;
@@ -83,7 +87,7 @@ public class BeneficiaryDAOImpl implements BeneficiaryDAO{
 				beneficiaryBean.setDocumentBeneficiary(rs.getString(2));
 				beneficiaryBean.setFirstName(rs.getString(3));
 				beneficiaryBean.setLastName(rs.getString(4));
-				beneficiaryBean.setBirthdate(rs.getDate(5));
+				beneficiaryBean.setBirthdate(df.format(rs.getTimestamp(5)));
 				beneficiaryBean.setAddress(rs.getString(6));
 				beneficiaryBean.setFlagDisabled(rs.getString(7));
 				beneficiaryBean.setFlagKnowledge(rs.getString(8));
@@ -106,9 +110,9 @@ public class BeneficiaryDAOImpl implements BeneficiaryDAO{
 	@Override
 	public Beneficiary insert(Beneficiary beneficiary) throws BusinessException {
 		
-		String sql = "insert into (documentBeneficiary,firstName,lastName,birthDate,address,"
+		String sql = "insert into beneficiary(documentBeneficiary,firstName,lastName,birthDate,address,"
 				+ "flagDisabled,flagKnowledge,descKnowledge,Ubigeo_idUbigeo,"
-				+ "TypeBeneficiary_idTypeBeneficiary) beneficiary "
+				+ "TypeBeneficiary_idTypeBeneficiary)  "
 				+ "values(?,?,?,?,?,?,?,?,?,?) ";
 		Connection conn = null;
 		
@@ -118,7 +122,7 @@ public class BeneficiaryDAOImpl implements BeneficiaryDAO{
 			ps.setString(1, beneficiary.getDocumentBeneficiary());
 			ps.setString(2, beneficiary.getFirstName());
 			ps.setString(3, beneficiary.getLastName());
-			ps.setDate(4, (Date) beneficiary.getBirthdate());
+			ps.setTimestamp(4, new Timestamp(df.parse(beneficiary.getBirthdate()).getTime()));
 			ps.setString(5, beneficiary.getAddress());
 			ps.setString(6, beneficiary.getFlagDisabled());
 			ps.setString(7, beneficiary.getFlagKnowledge());
@@ -129,6 +133,7 @@ public class BeneficiaryDAOImpl implements BeneficiaryDAO{
 			ps.executeUpdate();
 			ps.close();
 			conn.close();
+			beneficiary = listAll().get(0);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -148,7 +153,7 @@ public class BeneficiaryDAOImpl implements BeneficiaryDAO{
 			ps.setString(1, beneficiary.getDocumentBeneficiary());
 			ps.setString(2, beneficiary.getFirstName());
 			ps.setString(3, beneficiary.getLastName());
-			ps.setDate(4, (Date) beneficiary.getBirthdate());
+			ps.setTimestamp(4, new Timestamp(df.parse(beneficiary.getBirthdate()).getTime()));
 			ps.setString(5, beneficiary.getAddress());
 			ps.setString(6, beneficiary.getFlagDisabled());
 			ps.setString(7, beneficiary.getFlagKnowledge());

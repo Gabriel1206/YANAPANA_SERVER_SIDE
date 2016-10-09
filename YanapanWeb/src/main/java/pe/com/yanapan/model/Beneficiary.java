@@ -9,7 +9,7 @@ public class Beneficiary {
 	private String documentBeneficiary;
 	private String firstName;
 	private String lastName;
-	private Date birthdate;
+	private String birthdate;
 	private String address;
 	private String flagDisabled;
 	private String flagKnowledge;
@@ -42,10 +42,10 @@ public class Beneficiary {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public Date getBirthdate() {
+	public String getBirthdate() {
 		return birthdate;
 	}
-	public void setBirthdate(Date birthdate) {
+	public void setBirthdate(String birthdate) {
 		this.birthdate = birthdate;
 	}
 	public String getAddress() {
