@@ -89,7 +89,7 @@ a:hover, a:visited, a:link, a:active
 					<a href="<%=request.getContextPath()%>/users.json">Users List</a>
 				</li>
 				<li>
-					<a href="<%=request.getContextPath()%>/check.json">CheckIn & CheckOut List</a>
+					<a href="<%=request.getContextPath()%>/working.json">CheckIn & CheckOut List</a>
 				</li>
 				<li id="logout" style="float:right;">
 					<a href="<%=request.getContextPath()%>/logout.json">Exit</a>  

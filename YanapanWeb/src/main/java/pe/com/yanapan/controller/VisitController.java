@@ -23,7 +23,7 @@ public class VisitController extends ExceptionHandlingController{
 	
 	@RequestMapping(value = "/v1/visit", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody Visit registrarVisita(
-			@RequestBody Visit visit) throws BusinessException{		
+			@RequestBody Visit visit) throws BusinessException{	
 		return service.insert(visit);
 	}
 	

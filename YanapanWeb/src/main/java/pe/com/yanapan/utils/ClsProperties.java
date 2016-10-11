@@ -30,7 +30,7 @@ public class ClsProperties {
 
             File file = null;
            	file= new File("/usr/share/jboss-eap-6.1/conexion/conexion.properties");
-//            	file= new File("D:/UPC/moviles/conexion.properties");
+            //	file= new File("D:/UPC/moviles/conexion.properties");
             
             in=new FileInputStream(file);
             propiedades.load(in);
