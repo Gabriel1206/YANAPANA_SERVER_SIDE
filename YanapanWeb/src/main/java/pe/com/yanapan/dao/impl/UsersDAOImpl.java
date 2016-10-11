@@ -3,6 +3,9 @@ package pe.com.yanapan.dao.impl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -20,6 +23,7 @@ public class UsersDAOImpl implements UsersDAO {
 	
 	private  Connection conn=null;
 	private  ClsConexion conexion= new ClsConexion();
+	DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 	
 	@Override
 	public List<User> listAllUser() {
@@ -40,7 +44,7 @@ public class UsersDAOImpl implements UsersDAO {
 				userBean.setPassword(rs.getString(3));
 				userBean.setFirstName(rs.getString(4));
 				userBean.setLastName(rs.getString(5));
-				userBean.setBirthdate(rs.getDate(6));
+				userBean.setBirthdate(df.format(rs.getTimestamp(6)));
 				lstUser.add(userBean);
 			}
 			rs.close();
@@ -93,9 +97,7 @@ public class UsersDAOImpl implements UsersDAO {
 				ps.setString(3, user.getPassword().toUpperCase());
 				ps.setString(4, user.getFirstName().toUpperCase());
 				ps.setString(5, user.getLastName().toUpperCase());
-				Date birthdate = new Date();
-				birthdate = user.getBirthdate();
-				ps.setDate(6, (java.sql.Date) birthdate);
+				ps.setTimestamp(6, new Timestamp(df.parse(user.getBirthdate()).getTime()));
 				ps.executeUpdate();
 				conn.close();
 				String codigoUser = String.valueOf(user.getIdUser());

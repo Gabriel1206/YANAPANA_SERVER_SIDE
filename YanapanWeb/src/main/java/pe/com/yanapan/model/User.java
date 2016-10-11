@@ -10,7 +10,7 @@ public class User {
 	private String password;
 	private String firstName;
 	private String lastName;
-	private Date birthdate;
+	private String birthdate;
 	private Profile profile;
 	
 	
@@ -44,10 +44,10 @@ public class User {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public Date getBirthdate() {
+	public String getBirthdate() {
 		return birthdate;
 	}
-	public void setBirthdate(Date birthdate) {
+	public void setBirthdate(String birthdate) {
 		this.birthdate = birthdate;
 	}
 	public Profile getProfile() {

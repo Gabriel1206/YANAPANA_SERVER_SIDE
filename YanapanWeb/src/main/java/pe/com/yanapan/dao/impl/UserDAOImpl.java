@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 import pe.com.yanapan.dao.UserDAO;
 import pe.com.yanapan.exceptions.BusinessException;
@@ -14,6 +17,7 @@ import pe.com.yanapan.utils.ClsConexion;
 public class UserDAOImpl implements UserDAO {
 
 	private  ClsConexion conexion= new ClsConexion();
+	DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 	
 	@Override
 	public User findByUserAndPassword(String user, String password) throws BusinessException {
@@ -41,7 +45,7 @@ public class UserDAOImpl implements UserDAO {
 				userBean.setPassword(rs.getString(4));
 				userBean.setFirstName(rs.getString(5));
 				userBean.setLastName(rs.getString(6));
-				userBean.setBirthdate(rs.getTimestamp(7));
+				userBean.setBirthdate(df.format(rs.getTimestamp(7)));
 				profileBean.setIdProfile(rs.getInt(8));
 				profileBean.setDescProfile(rs.getString(9));
 				userBean.setProfile(profileBean);
@@ -58,7 +62,7 @@ public class UserDAOImpl implements UserDAO {
 
 	public User insert(User user) throws BusinessException {
 		
-		String sql = "insert into (documentUser,nickUser,password,firstName,lastName,birthDate,Profile_idProfile) user "
+		String sql = "insert into user (documentUser,nickUser,password,firstName,lastName,birthDate,Profile_idProfile)  "
 				+ "values(?,?,?,?,?,?,?) ";
 		
 		Connection conn = null;
@@ -71,12 +75,14 @@ public class UserDAOImpl implements UserDAO {
 			ps.setString(3, user.getPassword());
 			ps.setString(4, user.getFirstName());
 			ps.setString(5, user.getLastName());
-			ps.setDate(6, (Date) user.getBirthdate());
+			ps.setTimestamp(6, new Timestamp(df.parse(user.getBirthdate()).getTime()));
 			ps.setInt(7, user.getProfile().getIdProfile());
 			
 			ps.executeUpdate();
 			ps.close();
 			conn.close();
+			
+			user = findByUserAndPassword(user.getNickUser(), user.getPassword());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -108,7 +114,7 @@ public class UserDAOImpl implements UserDAO {
 				userBean.setPassword(rs.getString(4));
 				userBean.setFirstName(rs.getString(5));
 				userBean.setLastName(rs.getString(6));
-				userBean.setBirthdate(rs.getTimestamp(7));
+				userBean.setBirthdate(df.format(rs.getTimestamp(7)));
 				profileBean.setIdProfile(rs.getInt(8));
 				profileBean.setDescProfile(rs.getString(9));
 				userBean.setProfile(profileBean);
