@@ -118,7 +118,11 @@
 			rownumbers: true,
 			viewrecords : true,
 			sortorder : "idUser",
-			caption : "User All"				
+			caption : "User All",
+			afterInsertRow: function(rowId, data, item){
+				//alert(rowId + ' - ' + data + ' - ' + item.total);
+				$("#totalRecords").val(rowId);
+			}
 
 		}).trigger('reloadGrid');
 	}
@@ -135,6 +139,7 @@
 		colorLabels();
 		
 		$('#idUser').val(idUser);
+		$("#estado").val("U");
 		$('#nickUser').val(nickUser);
 		$('#password').val(password);
 		$('#firstName').val(firstName.replace(/\_/g," "));
@@ -163,6 +168,7 @@
 		jsonObj = [];
 		var parameters = new Object();
 		parameters.idUser = $("#idUser").val();
+		parameters.estado = $("#estado").val();
 		parameters.nickUser = $("#nickUser").val();
 		parameters.password = $("#password").val();
 		parameters.firstName = $("#firstName").val();
@@ -225,7 +231,9 @@
 		$('#title').html("New User");
 		colorLabels();
 		
-		$('#idUser').val('');
+		$("#idUser").val( parseInt($("#totalRecords").val()) + 1);
+		$("#estado").val("I");
+		//$('#idUser').val('');
 		$('#nickUser').val('');
 		$('#password').val('');
 		$('#firstName').val('');
@@ -237,6 +245,8 @@
 
 </head>
 <body>
+	<input type="hidden" id="totalRecords" value="0">
+	<input type="hidden" id="estado" value="">
 	<table border="0" width="100%">
 		<tr>
 			<td colspan="7">&nbsp;</td>
@@ -346,7 +356,7 @@
 						</tr>
 						<tr>
 							<td width="10px">&nbsp;</td>
-							<td><span id="lblbirthdate"><b>Birthdate (*)</b></span></td>
+							<td><span id="lblbirthdate"><b>Birthdate</b></span></td>
 							<td width="5px">&nbsp;</td>
 							<td><b>:</b></td>
 							<td width="5px">&nbsp;</td>

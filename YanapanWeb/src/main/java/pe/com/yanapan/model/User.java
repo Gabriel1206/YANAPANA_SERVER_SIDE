@@ -12,6 +12,7 @@ public class User {
 	private String lastName;
 	private String birthdate;
 	private Profile profile;
+	private String estado;
 	
 	
 	public int getIdUser() {
@@ -62,6 +63,13 @@ public class User {
 	}
 	public void setDocumentUser(String documentUser) {
 		this.documentUser = documentUser;
+	}
+	
+	public String getEstado() {
+		return estado;
+	}
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 	@Override
 	public String toString() {

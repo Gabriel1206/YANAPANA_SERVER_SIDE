@@ -27,8 +27,7 @@ public class UsersDAOImpl implements UsersDAO {
 	
 	@Override
 	public List<User> listAllUser() {
-		String sql = "select u.idUser, u.nickUser, u.password, u.firstName, u.lastName, u.birthDate "
-				+ "from user u ";
+		String sql = "select u.idUser, u.nickUser, u.password, u.firstName, u.lastName from user u; ";
 		List<User> lstUser = new ArrayList<>();
 		Connection conn = null;
 		User userBean = null;
@@ -37,14 +36,14 @@ public class UsersDAOImpl implements UsersDAO {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			
-			if(rs.next()){
+			while (rs.next()){
 				userBean = new User();
 				userBean.setIdUser(rs.getInt(1));
 				userBean.setNickUser(rs.getString(2));
 				userBean.setPassword(rs.getString(3));
 				userBean.setFirstName(rs.getString(4));
 				userBean.setLastName(rs.getString(5));
-				userBean.setBirthdate(df.format(rs.getTimestamp(6)));
+				//userBean.setBirthdate(df.format(rs.getTimestamp(6)));
 				lstUser.add(userBean);
 			}
 			rs.close();
@@ -62,7 +61,7 @@ public class UsersDAOImpl implements UsersDAO {
 		
 		Retorno retorno = new Retorno();
 
-		if (user.getIdUser() != 0) {
+		if ( user.getEstado().equals("U") ) {
 				
 			String sql = "update user set nickUser = ?, password = ?, firstName = ?, lastName = ? "
 					+ "Where idUser = " + user.getIdUser();
@@ -87,8 +86,8 @@ public class UsersDAOImpl implements UsersDAO {
 		      /*Calendar calendar = Calendar.getInstance();
 		      java.sql.Date birthdate = new java.sql.Date(calendar.getTime().getTime());*/
 			
-			String sql = "insert into user (idUser, nickUser, password, firstName, lastName, birthdate, Profile_idProfile) "
-					+ "values (?, ?, ?, ?, ?, ?, ?) ";
+			String sql = "insert into user (idUser, nickUser, password, firstName, lastName, Profile_idProfile) "
+					+ "values (?, ?, ?, ?, ?, ?) ";
 			try {
 				conn = conexion.getConnection();
 				PreparedStatement ps = conn.prepareStatement(sql);
@@ -97,7 +96,8 @@ public class UsersDAOImpl implements UsersDAO {
 				ps.setString(3, user.getPassword().toUpperCase());
 				ps.setString(4, user.getFirstName().toUpperCase());
 				ps.setString(5, user.getLastName().toUpperCase());
-				ps.setTimestamp(6, new Timestamp(df.parse(user.getBirthdate()).getTime()));
+				//ps.setTimestamp(6, new Timestamp(df.parse(user.getBirthdate()).getTime()));
+				ps.setInt(6, 1);
 				ps.executeUpdate();
 				conn.close();
 				String codigoUser = String.valueOf(user.getIdUser());
