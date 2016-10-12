@@ -68,7 +68,7 @@
 			mtype: 'POST',
 			height: 'auto',
 			width: 'auto',
-			colNames : ['ID', 'First Name', 'Last Name', 'Birthdate', 'Address', 'Options'],
+			colNames : ['ID', 'First Name', 'Last Name', 'Address', 'Options'],
 			colModel : [{
 				name : 'idBeneficiary',
 				index: 'idBeneficiary',
@@ -87,7 +87,7 @@
 				sortable:false,
 				width: 100,
 				align: 'left'
-			},{
+			}/*,{
 				name : 'birthDate',
 				index: 'birthDate',
 				sortable:false,
@@ -95,7 +95,7 @@
 				align: 'center',
 				format: 'd/m/Y',
 				formatter: 'date'
-			},{
+			}*/,{
 				name : 'address',
 				index: 'address',
 				sortable:false,
